@@ -355,6 +355,7 @@
 "Assets/Scripts/AdvancedDoors.cs"
 "Assets/Scripts/cameraMovement.cs"
 "Assets/Scripts/Drawer.cs"
+"Assets/Scripts/failedPrint.cs"
 "Assets/Scripts/Filament.cs"
 "Assets/Scripts/Flashlight.cs"
 "Assets/Scripts/Headbob.cs"

@@ -8,11 +8,13 @@ public class Filament : MonoBehaviour
     public GameObject filamentOBonGround;
     public GameObject pickUpText;
     public bool inReach;
+    public static bool canBePicked;
 
     // Start is called before the first frame update
     void Start()
     {
         inReach = false;
+        canBePicked = true;
         pickUpText.SetActive(false);
         filamentInvOB.SetActive(false);
         filamentOBonGround.SetActive(true);
@@ -20,7 +22,7 @@ public class Filament : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Reach")
+        if (other.gameObject.tag == "Reach" && canBePicked)
         {
             inReach = true;
             pickUpText.SetActive(true);
@@ -39,7 +41,7 @@ public class Filament : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inReach && Input.GetButtonDown("Interact"))
+        if (inReach && Input.GetButtonDown("Interact") && canBePicked)
         {
             filamentInvOB.SetActive(true);
             filamentOBonGround.SetActive(false);

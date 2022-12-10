@@ -11,13 +11,14 @@ public class Printer : MonoBehaviour
     public GameObject printText;
     public GameObject noFilamentText;
     public GameObject refillFilamentText;
-    public GameObject alreadyPrintingText;
     public GameObject printedKeyOB;
+    public GameObject notWoringText;
 
     private bool inReach;
     public bool filament;
-    private bool isPrinting;
+    public bool isPrinting;
     private bool donePrinting;
+    public bool isWorking;
 
     void OnTriggerEnter(Collider other)
     {
@@ -34,10 +35,13 @@ public class Printer : MonoBehaviour
             noFilamentText.SetActive(true);
         }
         //om du kollar på printern och den redan printar
-        if (other.gameObject.tag == "Reach" && isPrinting)
+        if (other.gameObject.tag == "Reach" && donePrinting && printedKeyOB.gameObject.name == "PlaceholderOB")
         {
             inReach = true;
-            alreadyPrintingText.SetActive(true);
+            if (!isWorking)
+            {
+                notWoringText.SetActive(true);
+            }
         }
         //om du har objektet filament men ej har suttit in det
         if (other.gameObject.tag == "Reach" && !filamentOB.activeInHierarchy && filamentInvOB.activeInHierarchy)
@@ -56,7 +60,7 @@ public class Printer : MonoBehaviour
             printText.SetActive(false);
             noFilamentText.SetActive(false);
             refillFilamentText.SetActive(false);
-            alreadyPrintingText.SetActive(false);
+            notWoringText.SetActive(false);
         }
     }
 
@@ -93,6 +97,7 @@ public class Printer : MonoBehaviour
             isPrinting = true;
             printer.SetBool("printing", true);
             Key.canBePicked = false;
+            Filament.canBePicked = false;
             StartCoroutine(printKey());
             printText.SetActive(false);
         }
@@ -102,7 +107,10 @@ public class Printer : MonoBehaviour
             filamentOB.SetActive(true);
             filamentInvOB.SetActive(false);
             refillFilamentText.SetActive(false);
-            printText.SetActive(true);
+            if (!donePrinting)
+            { 
+                printText.SetActive(true);
+            }
             printedKeyOB.SetActive(false);
         }
     }
@@ -119,6 +127,7 @@ public class Printer : MonoBehaviour
             isPrinting = false;
             donePrinting = true;
             Key.canBePicked = true;
+            Filament.canBePicked = true;
         }
     }
 }
