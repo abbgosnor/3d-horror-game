@@ -12,13 +12,11 @@ public class Printer : MonoBehaviour
     public GameObject noFilamentText;
     public GameObject refillFilamentText;
     public GameObject printedKeyOB;
-    public GameObject notWoringText;
 
     private bool inReach;
     public bool filament;
     public bool isPrinting;
     private bool donePrinting;
-    public bool isWorking;
 
     void OnTriggerEnter(Collider other)
     {
@@ -34,17 +32,8 @@ public class Printer : MonoBehaviour
             inReach = true;
             noFilamentText.SetActive(true);
         }
-        //om du kollar på printern och den redan printar
-        if (other.gameObject.tag == "Reach" && donePrinting && printedKeyOB.gameObject.name == "PlaceholderOB")
-        {
-            inReach = true;
-            if (!isWorking)
-            {
-                notWoringText.SetActive(true);
-            }
-        }
         //om du har objektet filament men ej har suttit in det
-        if (other.gameObject.tag == "Reach" && !filamentOB.activeInHierarchy && filamentInvOB.activeInHierarchy)
+        if (other.gameObject.tag == "Reach" && !filamentOB.activeInHierarchy && filamentInvOB.activeInHierarchy && !donePrinting)
         {
             inReach = true;
             refillFilamentText.SetActive(true);
@@ -60,7 +49,6 @@ public class Printer : MonoBehaviour
             printText.SetActive(false);
             noFilamentText.SetActive(false);
             refillFilamentText.SetActive(false);
-            notWoringText.SetActive(false);
         }
     }
 

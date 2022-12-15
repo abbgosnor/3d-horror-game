@@ -353,9 +353,11 @@
 -r:"Library/Bee/artifacts/500b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/500b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/AdvancedDoors.cs"
+"Assets/Scripts/brokenPrinter.cs"
 "Assets/Scripts/cameraMovement.cs"
 "Assets/Scripts/Drawer.cs"
-"Assets/Scripts/failedPrint.cs"
+"Assets/Scripts/enemyPatrolling.cs"
+"Assets/Scripts/FieldOfView.cs"
 "Assets/Scripts/Filament.cs"
 "Assets/Scripts/Flashlight.cs"
 "Assets/Scripts/Headbob.cs"
@@ -365,6 +367,7 @@
 "Assets/Scripts/playerMovement.cs"
 "Assets/Scripts/Printer.cs"
 "Assets/Scripts/UnHide.cs"
+"Assets/Scripts/UnlockedDoor.cs"
 -langversion:9.0
 
 /deterministic
